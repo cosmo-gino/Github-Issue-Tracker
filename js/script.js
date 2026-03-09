@@ -293,3 +293,87 @@ async function openModal(issueId) {
     loadingSpinner.classList.add('hidden');
   }
 }
+
+// Show modal
+function showModal(issue) {
+  document.getElementById('modalTitle').textContent = issue.title || 'Untitled';
+
+  const isOpen = issue.status === 'open' || issue.state === 'open';
+  const statusBadge = document.getElementById('modalStatus');
+  statusBadge.textContent = isOpen ? 'Opened' : 'Closed';
+  statusBadge.style.backgroundColor = isOpen ? '#10b981' : '#9333ea';
+  statusBadge.style.color = 'white';
+
+  document.getElementById('modalAuthor').textContent = `Opened by ${issue.user?.login || issue.author || 'Unknown'}`;
+
+  const dateStr = issue.created_at || issue.date || issue.createdAt;
+  let dateDisplay = 'Unknown date';
+
+  if (dateStr) {
+    const date = new Date(dateStr);
+    if (!isNaN(date.getTime())) {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      dateDisplay = `${day}/${month}/${year}`;
+    }
+  }
+
+  document.getElementById('modalDate').textContent = dateDisplay;
+
+  let labels = issue.labels || [];
+  if (labels.length > 0 && typeof labels[0] === 'object') {
+    labels = labels.map(l => l.name || l.label || '');
+  }
+
+  const modalTags = document.getElementById('modalTags');
+  modalTags.innerHTML = '';
+  labels.forEach(label => {
+    let labelBg = '#f3f4f6';
+    let labelColor = '#6b7280';
+    let icon = '';
+
+    if (label.includes('BUG')) {
+      labelBg = '#fce7f3';
+      labelColor = '#ef4444';
+      icon = '<img src="assets/bug.svg" class="w-4 h-4 inline mr-1" />';
+    } else if (label.includes('HELP')) {
+      labelBg = '#fef3c7';
+      labelColor = '#f97316';
+      icon = '<img src="assets/help_wanted.svg" class="w-4 h-4 inline mr-1" />';
+    } else if (label.includes('ENHANCEMENT')) {
+      labelBg = '#d1fae5';
+      labelColor = '#10b981';
+      icon = '<img src="assets/enhancement.svg" class="w-4 h-4 inline mr-1" />';
+    }
+
+    const tag = document.createElement('span');
+    tag.className = 'badge text-xs px-3 py-1 rounded-md';
+    tag.style.backgroundColor = labelBg;
+    tag.style.color = labelColor;
+    tag.innerHTML = icon + label;
+    modalTags.appendChild(tag);
+  });
+
+  document.getElementById('modalDescription').textContent = issue.body || issue.description || 'No description';
+  document.getElementById('modalAssignee').textContent = issue.assignee?.login || issue.assignee || 'Not assigned';
+
+  const priority = issue.priority || 'MEDIUM';
+  let priorityBg = '#fef3c7';
+  let priorityColor = '#f97316';
+  if (priority === 'HIGH') {
+    priorityBg = '#fce7f3';
+    priorityColor = '#ec4899';
+  } else if (priority === 'LOW') {
+    priorityBg = '#e9d5ff';
+    priorityColor = '#9333ea';
+  }
+
+  const priorityBadge = document.getElementById('modalPriority');
+  priorityBadge.textContent = priority;
+  priorityBadge.style.backgroundColor = priorityBg;
+  priorityBadge.style.color = priorityColor;
+
+  issueModal.showModal();
+}
+
