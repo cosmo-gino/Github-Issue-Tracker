@@ -118,7 +118,7 @@ function createCard(issue) {
     labelsHtml += `<span class="badge text-xs px-3 py-1 rounded-md" style="background-color: ${labelBg}; color: ${labelColor};">${icon}${label}</span>`;
   });
 
-  const date = new Date(issue.created_at || issue.date);
+  const date = new Date(issue.createdAt);
   const dateStr = date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
 
   card.innerHTML = `
@@ -306,7 +306,7 @@ function showModal(issue) {
 
   document.getElementById('modalAuthor').textContent = `Opened by ${issue.user?.login || issue.author || 'Unknown'}`;
 
-  const dateStr = issue.created_at || issue.date || issue.createdAt;
+  const dateStr = issue.createdAt;
   let dateDisplay = 'Unknown date';
 
   if (dateStr) {
@@ -315,7 +315,7 @@ function showModal(issue) {
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
-      dateDisplay = `${day}/${month}/${year}`;
+      dateDisplay = `${month}/${day}/${year}`;
     }
   }
 
