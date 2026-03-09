@@ -172,3 +172,23 @@ filterButtons.forEach(btn => {
     applyFilter();
   });
 });
+
+// Apply filter
+function applyFilter() {
+  issuesGrid.innerHTML = '';
+  loadingSpinner.classList.remove('hidden');
+
+  setTimeout(() => {
+    if (currentFilter === 'all') {
+      filteredIssues = allIssues;
+    } else if (currentFilter === 'open') {
+      filteredIssues = allIssues.filter(issue => issue.status === 'open' || issue.state === 'open');
+    } else if (currentFilter === 'closed') {
+      filteredIssues = allIssues.filter(issue => issue.status === 'closed' || issue.state === 'closed');
+    }
+
+    loadingSpinner.classList.add('hidden');
+    displayIssues();
+    updateCount();
+  }, 300);
+}
