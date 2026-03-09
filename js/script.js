@@ -192,3 +192,104 @@ function applyFilter() {
     updateCount();
   }, 300);
 }
+
+// Search function
+function performSearch() {
+  const searchText = searchInput.value.trim();
+
+  if (searchText.length === 0) {
+    filteredIssues = allIssues;
+    applyFilter();
+    return;
+  }
+
+  issuesGrid.innerHTML = '';
+  loadingSpinner.classList.remove('hidden');
+
+  const searchUrl = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${encodeURIComponent(searchText)}`;
+  console.log('Searching:', searchUrl);
+
+  fetch(searchUrl)
+    .then(response => {
+      console.log('Search response status:', response.status);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Search response data:', data);
+
+      let results = [];
+      if (data.status === 'success' && data.data) {
+        results = data.data;
+      } else if (data.success && data.data) {
+        results = data.data;
+      } else if (Array.isArray(data)) {
+        results = data;
+      } else if (data.data && Array.isArray(data.data)) {
+        results = data.data;
+      }
+
+      filteredIssues = results;
+      loadingSpinner.classList.add('hidden');
+      displayIssues();
+      updateCount();
+    })
+    .catch(error => {
+      console.error('Search error:', error);
+      filteredIssues = [];
+      loadingSpinner.classList.add('hidden');
+      displayIssues();
+      updateCount();
+    });
+}
+
+// Search button click
+searchBtn.addEventListener('click', performSearch);
+
+// Search on Enter key
+searchInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    performSearch();
+  }
+});
+
+// Open modal
+async function openModal(issueId) {
+  loadingSpinner.classList.remove('hidden');
+
+  try {
+    const url = `${SINGLE_ISSUE_URL}/${issueId}`;
+    console.log('Fetching issue from:', url);
+
+    const response = await fetch(url);
+    console.log('Response status:', response.status);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch issue');
+    }
+
+    const data = await response.json();
+    console.log('API Response:', data);
+
+    let issue = null;
+    if ((data.status === 'success' || data.success) && data.data) {
+      issue = data.data;
+    } else if (data.id || data.number) {
+      issue = data;
+    } else if (Array.isArray(data) && data.length > 0) {
+      issue = data[0];
+    }
+
+    console.log('Issue data:', issue);
+
+    if (issue) {
+      showModal(issue);
+    } else {
+      alert('Failed to load issue details. Check console for details.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error loading issue: ' + error.message);
+  } finally {
+    loadingSpinner.classList.add('hidden');
+  }
+}
