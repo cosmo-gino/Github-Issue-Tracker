@@ -71,8 +71,44 @@
                     <button class="filter-btn btn btn-sm px-10 btn-outline bg-white" data-filter="closed"
                         style="color: #4a5568; border-color: #cbd5e0;">Closed</button>
                 </div>
+                <!-- Issues Summary -->
+                <div class="bg-white rounded-lg p-6 mb-6 shadow-sm">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center"
+                                style="background-color: #ECE4FF;">
+                                <img src="assets/Aperture.svg" alt="Logo" class="w-7 h-7 ">
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold" id="issuesCount" style="color: #2d3748;">0 Issues</h2>
+                                <p class="text-gray-500">Track and manage your project issues</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex items-center gap-2">
+                                <img src="assets/open.svg" alt="Open" class="w-4 h-4" />
+                                <span class="text-sm" style="color: #4a5568;">Open</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <img src="assets/closed.svg" alt="Closed" class="w-4 h-4" />
+                                <span class="text-sm" style="color: #4a5568;">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            
+                <!-- Issues Grid -->
+                <div id="issuesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+                </div>
+
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="hidden">
+                    <div class="flex justify-center items-center py-12">
+                        <span class="loading loading-spinner loading-lg text-purple-600"></span>
+                    </div>
+                </div>
+
             </div>
         </div>
 
