@@ -36,8 +36,53 @@
 
 <body class="bg-[#F8FAFC] ">
 
-    <nav class="mx-auto mb-[60px] ">
-       
+    <nav class=" ">
+        <div class="min-h-screen flex items-center justify-center" style="background-color: #f5f5f5;">
+            <div class="card w-96 bg-white shadow-lg rounded-xl">
+                <div class="card-body p-8">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="./assets/github-logo.png" alt="">
+                        <h2 class="card-title text-2xl font-bold" style="color: #2d3748;">GitHub Issues Tracker</h2>
+                        <p class="text-gray-500 mt-2">Sign in to manage your issues</p>
+                    </div>
+
+                    <form id="loginForm" class="">
+                        <div>
+                            <label class="label">
+                                <span class="label-text font-semibold" style="color: #2d3748;">Username</span>
+                            </label>
+                            <input type="text" id="username" placeholder="Enter Username"
+                                class="input input-bordered w-full bg-white border-gray-300" />
+                            <p class="text-sm" style="color: #4A00FF;">Default: admin</p>
+                        </div>
+
+                        <div>
+                            <label class="label">
+                                <span class="label-text font-semibold" style="color: #2d3748;">Password</span>
+                            </label>
+                            <input type="password" id="password" placeholder="Enter Password"
+                                class="input input-bordered w-full bg-white border-gray-300" />
+                            <p class="text-sm" style="color:  #4A00FF;">Default: admin123</p>
+                        </div>
+
+                        <button type="submit" class="btn w-full text-white ring-0 border-none mt- "
+                            style="background-color: #4A00FF;">Sign In</button>
+                    </form>
+
+                    <div class="divider my-4">OR</div>
+
+                    <div class="p-4 rounded-lg" style="background-color: #f0f0f0;">
+                        <p class="text-sm mb-2" style="color: #9ca3af;">Demo Credentials:</p>
+                        <div class="text-sm" style="color: #2d3748;">
+                            <p><span class="font-semibold">Username:</span> admin</p>
+                            <p><span class="font-semibold">Password:</span> admin123</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/login.js"></script>
     </nav>
 
 
