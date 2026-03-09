@@ -155,3 +155,20 @@ function createCard(issue) {
 
   return card;
 }
+
+// Filter buttons
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(b => {
+      b.style.backgroundColor = '';
+      b.style.color = '#4a5568';
+      b.classList.add('btn-outline');
+    });
+    btn.style.backgroundColor = '#4A00FF';
+    btn.style.color = 'white';
+    btn.classList.remove('btn-outline');
+
+    currentFilter = btn.getAttribute('data-filter');
+    applyFilter();
+  });
+});
