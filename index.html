@@ -30,7 +30,7 @@
 
 <body class="">
 
-     <div class="min-h-screen bg-[#f5f5f5]">
+    <div class="min-h-screen bg-[#f5f5f5]">
         <!-- Header/Navbar -->
         <div class="w-full bg-white shadow-sm py-4 px-6">
             <div class="flex justify-between items-center">
@@ -40,9 +40,14 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="form-control relative">
-                        <input type="text" id="searchInput" placeholder="Search issues..." class="input input-bordered w-64 bg-white border-gray-300 pr-12" />
-                        <button id="searchBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 btn btn-sm text-white p-2" style="background-color: #4A00FF;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <input type="text" id="searchInput" placeholder="Search issues..."
+                            class="input input-bordered w-64 bg-white border-gray-300 pr-12" />
+                        <button id="searchBtn"
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 btn btn-sm text-white p-2"
+                            style="background-color: #4A00FF;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <path d="m21 21-4.35-4.35"></path>
                             </svg>
@@ -54,8 +59,24 @@
                 </div>
             </div>
         </div>
+        <!-- Content Container -->
+        <div class="w-full flex justify-center py-6">
+            <div class="w-[70%]">
+                <!-- Filters -->
+                <div class="bg-white rounded-lg p-6 flex gap-2 mb-6">
+                    <button class="filter-btn btn btn-sm px-10 text-white" data-filter="all"
+                        style="background-color: #4A00FF;">All</button>
+                    <button class="filter-btn btn btn-sm px-10 btn-outline bg-white" data-filter="open"
+                        style="color: #4a5568; border-color: #cbd5e0;">Open</button>
+                    <button class="filter-btn btn btn-sm px-10 btn-outline bg-white" data-filter="closed"
+                        style="color: #4a5568; border-color: #cbd5e0;">Closed</button>
+                </div>
 
-       
+            
+            </div>
+        </div>
+
+
     </div>
 
 
