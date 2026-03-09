@@ -377,3 +377,18 @@ function showModal(issue) {
   issueModal.showModal();
 }
 
+// Close modal
+closeModalBtn.addEventListener('click', () => {
+  issueModal.close();
+});
+
+// New issue button
+document.getElementById('newIssueBtn').addEventListener('click', () => {
+  alert('New Issue feature coming soon!');
+});
+
+// Update count
+function updateCount() {
+  const count = filteredIssues.length;
+  issuesCount.textContent = count + ' Issue' + (count !== 1 ? 's' : '');
+}
