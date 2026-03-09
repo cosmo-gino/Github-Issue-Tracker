@@ -14,10 +14,9 @@
 
 <h3>3️⃣ What is the difference between map(), filter(), and forEach()?</h3>
 
-<ul><il>map() creates a new array by transforming each element.</il> 
- <il>filter() creates a new array with elements that pass a condition.</il> 
-<il>forEach() just loops through the array and does not return a new array.</il>
- </ul>
+<ul><il>map() creates a new array by transforming each element.</il> </ul>
+ <ul><il>filter() creates a new array with elements that pass a condition.</il> </ul>
+<ul><il>forEach() just loops through the array and does not return a new array.</il></ul>
 
  <h3>4️⃣ What is an arrow function?</h3>
  <p>An arrow function is a short way to write a function in JavaScript. It uses the => symbol and makes the code shorter.</p>
